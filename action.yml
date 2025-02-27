@@ -1,9 +1,9 @@
 name: 'Environment Variable Substitutor'
 description: 'Substitute ${prefix.VAR} placeholders with environment variables'
-author: 'Your Name'
+author: 'Udit Patel'
 branding:
   icon: 'edit-3'
-  color: 'blue'
+  color: 'purple'
 
 inputs:
   files:
@@ -11,22 +11,26 @@ inputs:
     required: true
   placeholder-prefix:
     description: '3-character prefix (e.g., env)'
+    required: true
     default: 'env'
-  fail-fast:
-    description: 'Fail on missing variables (true/false)'
-    default: 'true'
   destination-path:
     description: 'Custom output directory (optional)'
-
+  create-dirs:
+    description: 'By default create directories if not exists '
+    default: true
+  dry-run:
+    description: 'Verify the expected out without creating files'
+    default: false
 runs:
-  using: composite
+  using: "composite"
   steps:
     - run: |
-        chmod +x $GITHUB_ACTION_PATH/scripts/substitute.sh
-        $GITHUB_ACTION_PATH/scripts/substitute.sh
+        chmod +x ${{ github.action_path }}/scripts/variable_substitutor.sh
+        ./${{ github.action_path }}/scripts/variable_substitutor.sh
       shell: bash
       env:
         FILES: ${{ inputs.files }}
         PREFIX: ${{ inputs.placeholder-prefix }}
-        FAIL_FAST: ${{ inputs.fail-fast }}
         DEST_PATH: ${{ inputs.destination-path }}
+        CREATE_DIRS: ${{ inputs.create-dirs }}
+        DRY_RUN: ${{ inputs.dry-run }}
