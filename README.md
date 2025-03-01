@@ -13,7 +13,7 @@ variables with enhanced validation and error handling.
 ## Features 🌟
 
 ✅ **Dynamic Prefix-based placeholder substitution** (e.g., `${env.DB_HOST}`, `${xyz.DB_PASS}`)  
-✅ **Custom Prefix Support** – Use any prefix (default: `env`)
+✅ **Custom Prefix Support** – Use any prefix (default: `env`,`xyz`,`abc`)  
 ✅ **Multiple output modes**: In-place or custom directory  
 ✅ **Dry-run capability** with colored diffs 🔍  
 ✅ **Auto directory creation** for complex paths  
@@ -41,9 +41,10 @@ variables with enhanced validation and error handling.
 ---
 ## 🏆 Use Cases
 
-✔ **Config File Injection** – Inject API keys, secrets, or environment-specific settings.  
-✔ **CI/CD Pipelines** – Modify configuration files before deployment.  
-✔ **Templating** – Dynamically create environment-specific files.
+##### ✔ _**Config File Injection**_ – Inject API keys, secrets, or environment-specific settings.  
+##### ✔ _**CI/CD Pipelines**_ – Modify configuration files before deployment.  
+##### ✔ _**Templating**_ – Dynamically create environment-specific files.
+
 ---
 ## Usage Examples 🚀
 
