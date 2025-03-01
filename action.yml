@@ -1,6 +1,6 @@
 name: 'Environment Variable Substitutor'
 description: 'Substitute ${prefix.VAR} placeholders with environment variables'
-author: 'Udit Patel'
+author: 'Udit Patel <udit014patel@gmail.com'
 branding:
   icon: 'edit-3'
   color: 'purple'

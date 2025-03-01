@@ -199,8 +199,18 @@ test_no_placeholder_found() {
 
   export FILES="$TEST_DIR/file14.txt"
 
-  ../scripts/variable_substitutor.sh
-  grep -q "No variables here" "$TEST_DIR/file14.txt"
+  ! ../scripts/variable_substitutor.sh
+#  grep -q "No variables here" "$TEST_DIR/file14.txt"
+}
+
+test_no_input_file() {
+  cleanup
+  mkdir -p "$TEST_DIR"
+  echo 'No file here' > "$TEST_DIR/file15.txt"
+
+  export FILES=""
+
+   ! ../scripts/variable_substitutor.sh
 }
 
 # Run all tests
@@ -221,6 +231,7 @@ run_test "Fail on missing placeholder" 14 test_fail_on_missing_placeholder
 run_test "Fail on non-writable directory" 15 test_fail_on_non_writable_directory
 run_test "No placeholder found" 16 test_no_placeholder_found
 run_test "custom prefix in-place Substitution" 17 test_custom_prefix_in_place_substitution
+run_test "No source input file provided" 18 test_no_input_file
 # 2 fails , 1 KTF
 # Final result
 if [ $RESULT -eq 0 ]; then

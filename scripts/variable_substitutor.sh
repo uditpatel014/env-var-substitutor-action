@@ -38,6 +38,13 @@ validate_files() {
   echo "::group::File Validation"
   local missing=0
 
+  # New empty input check
+    if [ -z "$FILES" ]; then
+      echo "::error::At least one file must be specified in 'files' input"
+      exit 1
+    fi
+
+
   IFS=',' read -ra files <<< "$INPUT_FILES"
   for file in "${files[@]}"; do
     if [ ! -f "$file" ]; then
@@ -204,7 +211,7 @@ IFS=',' read -r -a FILE_ARRAY <<< "$FILES"
 # Process files sequentially
 echo "::group::Processing Files"
 for FILE in "${FILE_ARRAY[@]}"; do
-  process_file "$FILE" || exit 1
+    process_file "$FILE" || exit 1
 done
 echo "::endgroup::"
 }

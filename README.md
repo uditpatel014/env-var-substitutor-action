@@ -1,56 +1,141 @@
-# Environment Variable Substitutor GitHub Action
+# GitHub Environment Variable Substitutor 🔄
 
-Replace `{env.VAR_NAME}` placeholders in files with environment variables during GitHub workflows.
+[![CI Tests](https://github.com/<your-username>/env-substitutor-action/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/env-substitutor-action/actions)
 
-## Features
-- Supports custom regex patterns for placeholders
-- Parallel processing for large file sets
-- Fail-safe mode for missing variables
-- Exclude specific files from processing
+[![GitHub Release](https://img.shields.io/github/v/release/<your-username>/env-substitutor-action)](https://github.com/<your-username>/env-substitutor-action/releases)
 
-## Usage
+## 🚀 **Overview**
+This GitHub Action dynamically replaces placeholders in files with environment variables during a workflow run.
+It supports custom prefixes, multiple files, dry-run mode, and flexible output locations, making it ideal for configuring deployment files, secrets, or other automation scripts.
+A flexible GitHub Action for configuration management using dynamic prefix-based placeholder substitution with environment 
+variables with enhanced validation and error handling.
 
-### Basic Example
+## Features 🌟
+
+✅ **Dynamic Prefix-based placeholder substitution** (e.g., `${env.DB_HOST}`, `${xyz.DB_PASS}`)  
+✅ **Custom Prefix Support** – Use any prefix (default: `env`)
+✅ **Multiple output modes**: In-place or custom directory  
+✅ **Dry-run capability** with colored diffs 🔍  
+✅ **Auto directory creation** for complex paths  
+✅ **Validation system**:
+
+- 3-character prefix enforcement
+- File existence checks
+- Write permission verification
+
+✅ **Fail-fast mode** for CI/CD safety  
+✅ **Comprehensive test coverage** (100% scenario coverage)
+
+## Table of Contents 📖
+
+- [Usage Examples](#usage-examples-)
+- [Working Principle](#working-principle-)
+- [Installation](#installation-)
+- [Input Parameters](#input-parameters-)
+- [Contributing](#contributing-)
+- [Contribution Opportunities](#contribution-opportunities)
+- [License](#license-)
+- [Author](#author-)
+
+
+---
+## 🏆 Use Cases
+
+✔ **Config File Injection** – Inject API keys, secrets, or environment-specific settings.  
+✔ **CI/CD Pipelines** – Modify configuration files before deployment.  
+✔ **Templating** – Dynamically create environment-specific files.
+---
+## Usage Examples 🚀
+
+### Basic Usage
+
 ```yaml
-steps:
-  - uses: actions/checkout@v4
-  - uses: your-username/env-substitutor-action@v1
-    with:
-      files: 'config/app.conf'
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
+- uses: your-username/env-substitutor-action@v1
+  with:
+    files: 'config/*.conf'
+    placeholder-prefix: 'env'
+  env:
+    DB_HOST: postgres-prod
+    API_KEY: ${{ secrets.API_KEY }}
 ```
 
-### Advanced Example
+### Custom Output Directory
+
 ```yaml
-steps:
-  - uses: your-username/env-substitutor-action@v1
-    with:
-      files: '**/*.conf'
-      placeholder-regex: '\{\{([^}]+)\}\}'  # Custom {{VAR}} syntax
-      exclude: 'secrets/*.conf'
-      parallel: 'true'
-    env:
-      DB_HOST: postgres-prod
-      LOG_LEVEL: debug
+- uses: your-username/env-substitutor-action@v1
+  with:
+    files: 'templates/*.yaml'
+    destination-path: 'generated-configs'
+    placeholder-prefix: 'cfg'
+  env:
+    ENVIRONMENT: production
 ```
 
-## Inputs
-| Name               | Description                          | Default               |
-|--------------------|--------------------------------------|-----------------------|
-| `files`            | Files to process (comma-separated)   | Required              |
-| `placeholder-regex`| Regex pattern for placeholders       | `\{env\.([^}]+)\}`    |
-| `fail-on-missing`  | Fail on missing env vars             | `true`                |
-| `exclude`          | Files to exclude                     | -                     |
-| `parallel`         | Enable parallel processing           | `true`                |
+### Dry Run Mode
 
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```yaml
+- uses: your-username/env-substitutor-action@v1
+  with:
+    files: 'app-config.json'
+    dry-run: true
+  env:
+    APP_VERSION: 2.1.0
+```
+---
+## Installation 📦
 
+1. Add to your workflow:
+```yaml
+- name: Setup Environment Substitutor
+  uses: your-username/env-substitutor-action@v1
+```
+2. **Required:** Install gettext package in bash environment(if not present by default)
+```yaml
+- name: Install Dependencies
+  run: sudo apt-get update && sudo apt-get install -y gettext
+```
+--- 
+## Input Parameters 📝
+
+| Parameter	          | Required	 | Default    | 	Description                         |
+|---------------------|-----------|------------|--------------------------------------|
+| files               | 	Yes	     | -          | 	Comma-separated file patterns       |
+| placeholder-prefix	 | No	       | env        | 	3-character variable prefix         |
+| destination-path	   | No        | 	optional	 | Output directory/file path           |
+| dry-run	            | No        | 	false	    | Preview changes without modification |
+| fail-fast	          | No        | 	true	     | Stop on first error                  |
+| create-directories	 | No        | 	true      | 	Auto-create output directories      |
+---
+### Working Principle ⚙
+
+![img.png](templates/flow_diagram.png)
+
+[//]: # (alternate)
+
+[//]: # (<img src="templates/flow_diagram.png" alt="Description" width="200" height="500">)
+
+---
+## Contribution Opportunities
+- 🐛 Bug hunting in edge cases
+- 📈 Performance optimization
+- 🌍 Multi-language documentation 
+- 🧪 Additional test scenarios
+---
+## Contributing 🤝
+_Contributions are always welcomed !_ **Please see:**
+- Contribution Guidelines 
+- Code of Conduct
+- Security Policy
+---
 ## License
 MIT License. See [LICENSE](LICENSE).
 
-## Future Features
-- Support for JSON/YAML file validation
-- Dry-run mode for testing
-- Variable validation with regex
+---
+
+## Author 🗺️
+- [Udit Patel](https://www.linkedin.com/in/udit-patel-69b313113/) 🕸️
+
+
+
+
+
