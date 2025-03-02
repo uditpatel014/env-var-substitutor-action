@@ -1,4 +1,4 @@
-name: Example Test Action
+name: CI Test Action
 
 on:
   workflow_run:

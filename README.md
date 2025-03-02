@@ -1,7 +1,7 @@
 # GitHub Environment Variable Substitutor 🔄
 
-[![CI Tests](https://github.com/<your-username>/env-substitutor-action/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/env-substitutor-action/actions)
-
+[![Unit Test Action](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/ci_test.yml/badge.svg)](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/ci_test.yml)
+[![CI Test Action](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/test_action.yml/badge.svg)](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/test_action.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/<your-username>/env-substitutor-action)](https://github.com/<your-username>/env-substitutor-action/releases)
 
 ## 🚀 **Overview**
