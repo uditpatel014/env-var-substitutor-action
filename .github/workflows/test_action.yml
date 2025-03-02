@@ -54,7 +54,7 @@ jobs:
       - name: Test Substitution with Default prefix
         uses: ./
         with:
-          files: "tests/ActionCheck/ssample-config-default-prefix.txt"
+          files: "tests/ActionCheck/sample-config-default-prefix.txt"
           destination-path: "tests/ActionValid/valid-config-default-prefix.txt"
 
         env:
