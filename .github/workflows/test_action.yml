@@ -39,3 +39,15 @@ jobs:
         env:
           APP_NAME: "Substitutor"
           APP_VERSION: "V1"
+
+      - name: Test Substitution with destination dir
+        uses: ./
+        with:
+          files: "tests/ActionCheck/sample-config.txt"
+          placeholder-prefix: 'vst'
+          dry-run: true
+          destination-path: "tests/ActionValid/valid-config.txt"
+
+        env:
+          APP_NAME: "Substitutor"
+          APP_VERSION: "V1"
