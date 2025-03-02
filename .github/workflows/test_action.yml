@@ -33,7 +33,7 @@ jobs:
       - name: Test Substitution
         uses: ./
         with:
-          files: "./tests/ActionCheck/sample-config.txt"
+          files: ".\tests\ActionCheck\sample-config.txt"
           placeholder-prefix: 'vst'
           dry-run: true
         env:

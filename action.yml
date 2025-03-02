@@ -25,12 +25,12 @@ runs:
   using: "composite"
   steps:
     - name: "Dynamic Variable Substitution"
-      run: |
-        bash ${{ github.action_path }}/scripts/variable_substitutor.sh
-      shell: bash
       env:
         FILES: ${{ inputs.files }}
         PREFIX: ${{ inputs.placeholder-prefix }}
         DEST_PATH: ${{ inputs.destination-path }}
         CREATE_DIRS: ${{ inputs.create-dirs }}
         DRY_RUN: ${{ inputs.dry-run }}
+      run: |
+        bash ${{ github.action_path }}/scripts/variable_substitutor.sh
+      shell: bash
