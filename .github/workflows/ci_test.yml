@@ -13,6 +13,10 @@ jobs:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
 
+    defaults:
+      run:
+        shell: bash
+
     permissions:
       contents: read
       actions: write
