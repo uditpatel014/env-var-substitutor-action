@@ -31,6 +31,7 @@ jobs:
           chmod -R 777 "$GITHUB_WORKSPACE/tests"
           mkdir -p "$GITHUB_WORKSPACE/tests/ActionCheck/"
           echo '"Hello from ${vst.APP_NAME} ___ ${vst.APP_VERSION}" > ./tests/ActionCheck/sample-config.txt'
+          ls -l
 
       - name: Test Substitution
         uses: ./
