@@ -17,7 +17,7 @@ jobs:
 
     permissions:
       actions: write
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -28,6 +28,7 @@ jobs:
 #        run: sudo apt-get update && sudo apt-get install -y gettext
       - name: Test Prep
         run: |
+          chmod -R 777 ./tests
           mkdir -p "./tests/ActionCheck/"
           echo '"Hello from ${vst.APP_NAME} ___ ${vst.APP_VERSION}" > ./tests/ActionCheck/sample-config.txt'
 
