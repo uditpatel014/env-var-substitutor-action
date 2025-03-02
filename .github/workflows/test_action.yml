@@ -30,7 +30,7 @@ jobs:
       - name: Test Substitution
         uses: ./
         with:
-          files: '$GITHUB_WORKSPACE/tests/ActionCheck/sample-config.txt'
+          files: "${{ github.workspace }}/tests/ActionCheck/sample-config.txt"
           placeholder-prefix: 'vst'
           dry-run: true
         env:
