@@ -160,7 +160,7 @@ process_file() {
   UPDATED_CONTENT="$CONTENT"
 
   # Find all placeholders
-  PLACEHOLDERS=$(echo "$CONTENT" | grep -oP '\$\{'"$PLACEHOLDER_PREFIX"'\.[a-zA-Z0-9_*?-]+\s*\}')
+  PLACEHOLDERS=$(echo "$CONTENT" | grep -oE '\$\{'"$PLACEHOLDER_PREFIX"'\.[a-zA-Z0-9_*?-]+\s*\}')
   echo "$PLACEHOLDERS"
   if [ -z "$PLACEHOLDERS" ]; then
     echo "::warning::No match found for $PLACEHOLDER_PREFIX in $FILE"
