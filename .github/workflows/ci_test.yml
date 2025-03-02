@@ -1,0 +1,42 @@
+name: Unit Test Action
+
+on:
+  schedule:
+    - "30 18 * * *"
+
+  push:
+
+  workflow_dispatch:
+
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      actions: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+#      - name: Install Dependencies
+#        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Run Tests
+        run: |
+          chmod +x tests/test_variable_substitutor.sh
+          tests/test_variable_substitutor.sh
+
+      - name: Upload Artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            test_files/
+            test_output/

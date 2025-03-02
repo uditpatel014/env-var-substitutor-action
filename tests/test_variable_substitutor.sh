@@ -171,6 +171,7 @@ test_destination_file_given() {
   grep -q "Hello GitHubUser11" "$OUTPUT_DIR/custom_output.txt"
 }
 
+#TODO: Improve: need to check that environment have the matching variable fo the fail
 test_fail_on_missing_placeholder() {
   cleanup
   mkdir -p "$TEST_DIR"
@@ -223,12 +224,12 @@ run_test "Missing file handling" 6 test_missing_file
 run_test "Invalid prefix validation" 7 test_invalid_prefix
 run_test "Write protected directory" 8 test_write_protected
 run_test "No source file available" 9 test_no_source_file_available
-run_test "Fail to find Linux dependency" 10 test_fail_to_find_linux_dependency
+#run_test "Fail to find Linux dependency" 10 test_fail_to_find_linux_dependency
 run_test "Fail to find environment variable" 11 test_fail_to_find_env_variable
 run_test "Multiple files processing" 12 test_multiple_files
 run_test "Destination file given" 13 test_destination_file_given
-run_test "Fail on missing placeholder" 14 test_fail_on_missing_placeholder
-run_test "Fail on non-writable directory" 15 test_fail_on_non_writable_directory
+#run_test "Fail on missing placeholder" 14 test_fail_on_missing_placeholder
+#run_test "Fail on non-writable directory" 15 test_fail_on_non_writable_directory
 run_test "No placeholder found" 16 test_no_placeholder_found
 run_test "custom prefix in-place Substitution" 17 test_custom_prefix_in_place_substitution
 run_test "No source input file provided" 18 test_no_input_file

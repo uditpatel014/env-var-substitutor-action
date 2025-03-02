@@ -3,9 +3,9 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
     tags:
-      - 'v*.*.*'
+      - 'v*'
 
 jobs:
   release:

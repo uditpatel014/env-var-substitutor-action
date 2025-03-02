@@ -39,7 +39,7 @@ validate_files() {
   local missing=0
 
   # New empty input check
-    if [ -z "$FILES" ]; then
+    if [[ -z "$FILES" || "$FILES" =~ ^,*$ ]]; then
       echo "::error::At least one file must be specified in 'files' input"
       exit 1
     fi
@@ -151,7 +151,7 @@ process_file() {
   # Check if file exists
   if [ ! -f "$FILE" ]; then
     echo "::error::File $FILE does not exist."
-    return 1
+    exit 1
   fi
 
   # Read file content
@@ -165,7 +165,7 @@ process_file() {
     echo "::warning::No match found for $PLACEHOLDER_PREFIX in $FILE"
     if [ "$FAIL_FAST" = "true" ]; then
        echo "::error::Missing environment variable in file $FILE."
-       return 1
+       exit 1
     fi
   fi
 
@@ -181,7 +181,7 @@ process_file() {
       echo "::warning::Environment variable $VAR_NAME is not set."
       if [ "$FAIL_FAST" = "true" ]; then
         echo "::error::Missing environment variable $VAR_NAME in file $FILE."
-        return 1
+        exit 1
       fi
 
     else
@@ -214,6 +214,7 @@ for FILE in "${FILE_ARRAY[@]}"; do
     process_file "$FILE" || exit 1
 done
 echo "::endgroup::"
+echo "::notice::Variable Substitution completed successfully!"
 }
 
 # Execution Flow
@@ -222,5 +223,3 @@ validate_prefix
 validate_files
 substitute_var
 
-
-echo "::notice::Variable Substitution completed successfully!"
