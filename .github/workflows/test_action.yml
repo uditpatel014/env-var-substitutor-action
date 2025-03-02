@@ -19,6 +19,9 @@ jobs:
       actions: write
       contents: write
 
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
