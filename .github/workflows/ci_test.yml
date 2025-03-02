@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     permissions:
-      contents: read
+      contents: write
       actions: write
 
 
@@ -30,7 +30,7 @@ jobs:
       - name: Run Tests
         run: |
           chmod +x tests/test_variable_substitutor.sh
-          tests/test_variable_substitutor.sh
+          bash $GITHUB_WORKSPACE/tests/test_variable_substitutor.sh
         shell: bash
 
 #      - name: Upload Artifacts
