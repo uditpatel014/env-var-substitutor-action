@@ -45,8 +45,17 @@ jobs:
         with:
           files: "tests/ActionCheck/sample-config.txt"
           placeholder-prefix: 'vst'
-          dry-run: true
           destination-path: "tests/ActionValid/valid-config.txt"
+
+        env:
+          APP_NAME: "Substitutor"
+          APP_VERSION: "V1"
+
+      - name: Test Substitution with Default prefix
+        uses: ./
+        with:
+          files: "tests/ActionCheck/ssample-config-default-prefix.txt"
+          destination-path: "tests/ActionValid/valid-config-default-prefix.txt"
 
         env:
           APP_NAME: "Substitutor"
