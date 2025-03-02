@@ -26,7 +26,6 @@ runs:
   steps:
     - name: "Dynamic Variable Substitution"
       run: |
-#        chmod +x ${{ github.action_path }}/scripts/variable_substitutor.sh
         bash ${{ github.action_path }}/scripts/variable_substitutor.sh
       shell: bash
       env:
