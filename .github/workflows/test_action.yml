@@ -39,12 +39,3 @@ jobs:
         env:
           APP_NAME: "Substitutor"
           APP_VERSION: "V1"
-
-#            - name: Test Prep
-#              run: |
-#                mkdir -p "$GITHUB_WORKSPACE/tests/ActionCheck/"
-#                chmod -R 777 "$GITHUB_WORKSPACE/tests"
-#                echo '"Hello from ${vst.APP_NAME} ___ ${vst.APP_VERSION}" > ./tests/ActionCheck/sample-config.txt'
-#                ls -l
-#                ls -ld "$GITHUB_WORKSPACE/tests/ActionCheck"
-#                whoami
