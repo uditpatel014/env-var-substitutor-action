@@ -36,7 +36,7 @@ test_in_place_substitution() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/file1.txt"
   export FILES="$TEST_DIR/file1.txt" TEST_NAME="GitHubUser1"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   grep -q "Hello GitHubUser1" "$TEST_DIR/file1.txt"
 }
 
@@ -47,7 +47,7 @@ test_custom_prefix_in_place_substitution(){
   echo 'Hello ${udi.TEST_NAME}' > "$TEST_DIR/fileA.txt"
   export FILES="$TEST_DIR/fileA.txt" TEST_NAME="GitHubUserA" PREFIX="udi"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   cat "$TEST_DIR/fileA.txt"
   grep -q "Hello GitHubUserA" "$TEST_DIR/fileA.txt"
 }
@@ -57,7 +57,7 @@ test_custom_directory() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/file2.txt"
   export FILES="$TEST_DIR/file2.txt" TEST_NAME="GitHubUser2" DEST_PATH="$OUTPUT_DIR"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   grep -q "Hello GitHubUser2" "$OUTPUT_DIR/file2.txt"
 }
 
@@ -67,7 +67,7 @@ test_auto_directory_creation() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/file3.txt"
   export FILES="$TEST_DIR/file3.txt" TEST_NAME="GitHubUser3" DEST_PATH="$OUTPUT_DIR/newdir/file3.txt"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   grep -q "Hello GitHubUser3" "$OUTPUT_DIR/newdir/file3.txt"
 }
 
@@ -77,7 +77,7 @@ test_dry_run_diff_dir() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/file4.txt"
   export FILES="$TEST_DIR/file4.txt" TEST_NAME="GitHubUser4" DRY_RUN="true" DEST_PATH="$OUTPUT_DIR/file4.txt"
 
-  output=$(../scripts/variable_substitutor.sh)
+  output=$(scripts/variable_substitutor.sh)
   echo $output
   echo "$output" | grep -q "DRY RUN" &&
   ! grep -q "GitHubUser4" "$OUTPUT_DIR/file4.txt"
@@ -89,7 +89,7 @@ test_dry_run_same_dir() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/fileB.txt"
   export FILES="$TEST_DIR/fileB.txt" TEST_NAME="GitHubUserB" DRY_RUN="true"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   ! grep -q "GitHubUserB" "$TEST_DIR/fileB.txt"
 }
 
@@ -98,7 +98,7 @@ test_missing_file() {
   mkdir -p "$TEST_DIR"
   export FILES="$TEST_DIR/missing.txt"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_invalid_prefix() {
@@ -107,7 +107,7 @@ test_invalid_prefix() {
   echo 'Test' > "$TEST_DIR/file5.txt"
   export FILES="$TEST_DIR/file5.txt" PREFIX="invalid"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 
@@ -119,14 +119,14 @@ test_write_protected() {
   echo 'Test' > "$TEST_DIR/file6.txt"
   export FILES="$TEST_DIR/file6.txt" DEST_PATH="$OUTPUT_DIR"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_no_source_file_available() {
   cleanup
   export FILES="non_existent_file.txt"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 #NA
 test_fail_to_find_linux_dependency() {
@@ -135,7 +135,7 @@ test_fail_to_find_linux_dependency() {
   echo 'Hello ${env.TEST_NAME}' > "$TEST_DIR/file7.txt"
   export FILES="$TEST_DIR/file7.txt" TEST_NAME="GitHubUser7"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_fail_to_find_env_variable() {
@@ -144,7 +144,7 @@ test_fail_to_find_env_variable() {
   echo 'Hello ${abc.TEST_NAME}' > "$TEST_DIR/file8.txt"
   export FILES="$TEST_DIR/file8.txt"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_multiple_files() {
@@ -155,7 +155,7 @@ test_multiple_files() {
 
   export FILES="$TEST_DIR/file9.txt,$TEST_DIR/file10.txt" TEST_NAME="MultiTest" USER="User123"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   grep -q "Hello MultiTest" "$TEST_DIR/file9.txt"
   grep -q "Welcome User123" "$TEST_DIR/file10.txt"
 }
@@ -167,7 +167,7 @@ test_destination_file_given() {
 
   export FILES="$TEST_DIR/file11.txt" TEST_NAME="GitHubUser11" DEST_PATH="$OUTPUT_DIR/custom_output.txt"
 
-  ../scripts/variable_substitutor.sh
+  scripts/variable_substitutor.sh
   grep -q "Hello GitHubUser11" "$OUTPUT_DIR/custom_output.txt"
 }
 
@@ -179,7 +179,7 @@ test_fail_on_missing_placeholder() {
 
   export FILES="$TEST_DIR/file12.txt"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_fail_on_non_writable_directory() {
@@ -190,7 +190,7 @@ test_fail_on_non_writable_directory() {
 
   export FILES="$TEST_DIR/file13.txt" TEST_NAME="GitHubUser13" DEST_PATH="$OUTPUT_DIR"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 }
 
 test_no_placeholder_found() {
@@ -200,7 +200,7 @@ test_no_placeholder_found() {
 
   export FILES="$TEST_DIR/file14.txt"
 
-  ! ../scripts/variable_substitutor.sh
+  ! scripts/variable_substitutor.sh
 #  grep -q "No variables here" "$TEST_DIR/file14.txt"
 }
 
@@ -211,7 +211,7 @@ test_no_input_file() {
 
   export FILES=""
 
-   ! ../scripts/variable_substitutor.sh
+   ! scripts/variable_substitutor.sh
 }
 
 # Run all tests
