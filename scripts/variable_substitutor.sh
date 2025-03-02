@@ -82,6 +82,7 @@ validate_output_dir() {
  # Now check if it's writable after ensuring it exists
   if [ ! -w "$DEST_DIR" ]; then
     echo "::error::Cannot write to $DEST_DIR"
+    ls -ld "$DEST_DIR"
     exit 1
   fi
   echo "::endgroup::"
