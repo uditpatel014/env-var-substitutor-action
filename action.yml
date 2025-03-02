@@ -24,9 +24,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
-        chmod +x ${{ github.action_path }}/scripts/variable_substitutor.sh
-        ./${{ github.action_path }}/scripts/variable_substitutor.sh
+    - name: "Dynamic Variable Substitution"
+      run: |
+        chmod +x ${{ github.workspace }}/scripts/variable_substitutor.sh
+        ${{ github.action_path }}/scripts/variable_substitutor.sh
       shell: bash
       env:
         FILES: ${{ inputs.files }}
