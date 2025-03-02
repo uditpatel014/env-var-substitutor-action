@@ -28,8 +28,8 @@ jobs:
 #        run: sudo apt-get update && sudo apt-get install -y gettext
       - name: Test Prep
         run: |
-          chmod -R 777 ./tests
-          mkdir -p "./tests/ActionCheck/"
+          chmod -R 777 "$GITHUB_WORKSPACE/tests"
+          mkdir -p "$GITHUB_WORKSPACE/tests/ActionCheck/"
           echo '"Hello from ${vst.APP_NAME} ___ ${vst.APP_VERSION}" > ./tests/ActionCheck/sample-config.txt'
 
       - name: Test Substitution
