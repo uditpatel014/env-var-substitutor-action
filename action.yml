@@ -32,5 +32,5 @@ runs:
         CREATE_DIRS: ${{ inputs.create-dirs }}
         DRY_RUN: ${{ inputs.dry-run }}
       run: |
-        ${{ github.action_path }}/scripts/variable_substitutor.sh
+        bash "${{ github.action_path }}/scripts/variable_substitutor.sh"
       shell: bash
