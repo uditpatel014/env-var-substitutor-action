@@ -2,7 +2,8 @@
 
 [![Unit Test Action](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/ci_test.yml/badge.svg)](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/ci_test.yml)
 [![CI Test Action](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/test_action.yml/badge.svg)](https://github.com/uditpatel014/env-var-substitutor-action/actions/workflows/test_action.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/<your-username>/env-substitutor-action)](https://github.com/<your-username>/env-substitutor-action/releases)
+
+[//]: # ([![GitHub Release]&#40;https://img.shields.io/github/v/release/<your-username>/env-substitutor-action&#41;]&#40;https://github.com/<your-username>/env-substitutor-action/releases&#41;)
 
 ## 🚀 **Overview**
 This GitHub Action dynamically replaces placeholders in files with environment variables during a workflow run.
