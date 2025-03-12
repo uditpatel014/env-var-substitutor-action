@@ -7,7 +7,7 @@ branding:
 
 inputs:
   files:
-    description: 'Comma-separated list of files to process'
+    description: 'Comma-separated list of files to process in sequence'
     required: true
   placeholder-prefix:
     description: '3-character prefix (e.g., env)'
